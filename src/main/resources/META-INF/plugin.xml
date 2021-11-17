@@ -5,14 +5,42 @@
     <vendor>pratclot</vendor>
 
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.java</depends>
+    <depends>org.jetbrains.kotlin</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.pratclot.syntheticstoviewbinding.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.pratclot.syntheticstoviewbinding.services.MyProjectService"/>
+        <applicationService
+            serviceImplementation="com.github.pratclot.syntheticstoviewbinding.services.MyApplicationService" />
+        <projectService
+            serviceImplementation="com.github.pratclot.syntheticstoviewbinding.services.MyProjectService" />
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.pratclot.syntheticstoviewbinding.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
+        <listener
+            class="com.github.pratclot.syntheticstoviewbinding.listeners.MyProjectManagerListener"
+            topic="com.intellij.openapi.project.ProjectManagerListener" />
     </applicationListeners>
+
+    <actions>
+        <action class="com.github.pratclot.syntheticstoviewbinding.action.MigrateFragmentAction"
+            description="SDK action example"
+            icon="SdkIcons.Sdk_default_icon" id="com.github.pratclot.syntheticstoviewbinding.action.MigrateFragmentAction"
+            text="Migrate fragment to ViewBinding">
+            <override-text place="MainMenu" text="Migrate fragment to ViewBinding" />
+                    <keyboard-shortcut first-keystroke="control meta shift A" keymap="$default"/>
+            <!--        <mouse-shortcut keystroke="control button3 doubleClick" keymap="$default"/>-->
+            <add-to-group anchor="first" group-id="GenerateGroup" />
+            <add-to-group anchor="first" group-id="ToolsMenu" />
+        </action>
+        <action class="com.github.pratclot.syntheticstoviewbinding.action.AddViewBindingMethodsAction"
+            description="SDK action example"
+            icon="SdkIcons.Sdk_default_icon" id="com.github.pratclot.syntheticstoviewbinding.action.AddViewBindingMethodsAction"
+            text="Add ViewBinding methods">
+            <override-text place="MainMenu" text="Add ViewBinding methods" />
+                    <keyboard-shortcut first-keystroke="control meta shift S" keymap="$default"/>
+            <!--        <mouse-shortcut keystroke="control button3 doubleClick" keymap="$default"/>-->
+            <add-to-group anchor="first" group-id="GenerateGroup" />
+            <add-to-group anchor="first" group-id="ToolsMenu" />
+        </action>
+    </actions>
 </idea-plugin>
