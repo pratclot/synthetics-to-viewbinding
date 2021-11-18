@@ -39,11 +39,13 @@ It is not planned to be universal or totally reconfigurable, rather an exercise,
 - [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
 
 <!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+A simple opinionated plugin to automate migration from Kotlin synthetic extensions to View Binding.
+Not all cases are covered, do not hesitate to raise an issue on GitHub with an example! 
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
+Use "Generate..." menu on the file to perform the conversion with "Migrate fragment to ViewBinding" action. 
+Use "Add ViewBinding methods" action to insert methods to set and retrieve the binding using the view tag trick from [here](https://www.reddit.com/r/androiddev/comments/eo8rou/comment/fea42o9/?utm_source=share&utm_medium=web2x&context=3).
 
-To keep everything working, do not remove `<!-- ... -->` sections. 
+[link to github](https://github.com/pratclot/synthetics-to-viewbinding)
 <!-- Plugin description end -->
 
 ## Installation
