@@ -17,3 +17,5 @@ fun allTrue(vararg conditions: Boolean) = conditions.toList().allTrue()
 fun String.toCamelCase() = split('_').joinToString("", transform = String::capitalize)
 
 fun <R, S> with(one: R, two: S, block: R.(S) -> Unit) = block(one, two)
+
+fun Any.log(prefix: String = "") = println("$prefix ${Thread.currentThread().stackTrace[3].methodName} $this")

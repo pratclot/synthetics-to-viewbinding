@@ -1,5 +1,5 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
-<idea-plugin>
+<idea-plugin url="https://github.com/pratclot/synthetics-to-viewbinding">
     <id>com.github.pratclot.syntheticstoviewbinding</id>
     <name>synthetics-to-viewbinding</name>
     <vendor>pratclot</vendor>
@@ -7,6 +7,18 @@
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.java</depends>
     <depends>org.jetbrains.kotlin</depends>
+
+    <description>
+        <![CDATA[
+    A simple opinionated plugin to automate migration from Kotlin synthetic extensions to View Binding. <br/>
+    Not all cases are covered, do not hesitate to raise an issue on GitHub with an example! <br/>
+    <br/>
+    Use "Generate..." menu on the file to perform the conversion with "Migrate fragment to ViewBinding" action. <br/>
+    Use "Add ViewBinding methods" action to insert methods to set and retrieve the binding using the view tag trick from <a href="https://www.reddit.com/r/androiddev/comments/eo8rou/comment/fea42o9/?utm_source=share&utm_medium=web2x&context=3">here</a>. <br/>
+    <br/>
+    <a href="https://github.com/pratclot/synthetics-to-viewbinding">link to github</a>
+  ]]>
+    </description>
 
     <extensions defaultExtensionNs="com.intellij">
         <applicationService
@@ -23,7 +35,7 @@
 
     <actions>
         <action class="com.github.pratclot.syntheticstoviewbinding.action.MigrateFragmentAction"
-            description="SDK action example"
+            description="Migrate fragment to ViewBinding"
             icon="SdkIcons.Sdk_default_icon" id="com.github.pratclot.syntheticstoviewbinding.action.MigrateFragmentAction"
             text="Migrate fragment to ViewBinding">
             <override-text place="MainMenu" text="Migrate fragment to ViewBinding" />
@@ -33,7 +45,7 @@
             <add-to-group anchor="first" group-id="ToolsMenu" />
         </action>
         <action class="com.github.pratclot.syntheticstoviewbinding.action.AddViewBindingMethodsAction"
-            description="SDK action example"
+            description="Add ViewBinding methods"
             icon="SdkIcons.Sdk_default_icon" id="com.github.pratclot.syntheticstoviewbinding.action.AddViewBindingMethodsAction"
             text="Add ViewBinding methods">
             <override-text place="MainMenu" text="Add ViewBinding methods" />

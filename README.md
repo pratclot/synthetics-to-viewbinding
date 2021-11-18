@@ -4,6 +4,11 @@
 [![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 
+## What this is for
+
+This plugin allows to convert Android synthetic references in kt files to View Binding ones with just a shortcut.
+It is not planned to be universal or totally reconfigurable, rather an exercise, but reasonably hard improvements could be done.
+
 ## TODO
 
 - [ ] Have a configuration to the plugin, like let user choose how to name the *binding*, how the view's layout referenced in the fragment etc.

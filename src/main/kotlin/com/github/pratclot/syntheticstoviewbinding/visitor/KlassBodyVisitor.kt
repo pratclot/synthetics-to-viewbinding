@@ -2,46 +2,38 @@ package com.github.pratclot.syntheticstoviewbinding.visitor
 
 import com.github.pratclot.syntheticstoviewbinding.util.MigrateActionCallbacks
 import com.github.pratclot.syntheticstoviewbinding.util.allTrue
-import com.intellij.psi.PsiElement
-import org.jetbrains.kotlin.idea.structuralsearch.visitor.KotlinRecursiveElementVisitor
-import org.jetbrains.kotlin.psi.KtCallExpression
 import org.jetbrains.kotlin.psi.KtDotQualifiedExpression
+import org.jetbrains.kotlin.psi.KtReferenceExpression
+import org.jetbrains.kotlin.psi.KtTreeVisitorVoid
 
 private const val LAYOUT_REFERENCE_MARKER = "R.layout"
 
 class KlassBodyVisitor(
     private val migrateActionCallbacks: MigrateActionCallbacks
-) : KotlinRecursiveElementVisitor() {
-    override fun visitElement(element: PsiElement) {
-        super.visitElement(element)
-        checkForSyntheticReference(element)
+) : KtTreeVisitorVoid() {
+    override fun visitReferenceExpression(expression: KtReferenceExpression) {
+        super.visitReferenceExpression(expression)
+        expression.checkForSyntheticReference()
     }
 
-    /**
-     * Finds instances of inflater.inflate(R.layout.fragment, container, false).
-     */
-    override fun visitCallExpression(expression: KtCallExpression) {
-        super.visitCallExpression(expression)
+    override fun visitDotQualifiedExpression(expression: KtDotQualifiedExpression) {
+        super.visitDotQualifiedExpression(expression)
         expression.checkForLayoutReference()
     }
 
-    private fun checkForSyntheticReference(element: PsiElement) {
-        if (element.text in migrateActionCallbacks.synthNames) migrateActionCallbacks.onSynthRefFound(
-            element
+    private fun KtReferenceExpression.checkForSyntheticReference() {
+        if (allTrue(
+                text in migrateActionCallbacks.synthNames,
+            )
+        ) migrateActionCallbacks.onSynthRefFound(
+            this
         )
     }
 
-    private fun KtCallExpression.checkForLayoutReference() {
-        val valueArguments = children[1]
-        val firstArgumentExpression = try {
-            valueArguments.children[0].children[0]
-        } catch (_: IndexOutOfBoundsException) {
-            return
-        }
+    private fun KtDotQualifiedExpression.checkForLayoutReference() {
         if (allTrue(
-                firstArgumentExpression is KtDotQualifiedExpression,
-                firstArgumentExpression.text.startsWith(LAYOUT_REFERENCE_MARKER),
+                text.startsWith(LAYOUT_REFERENCE_MARKER)
             )
-        ) migrateActionCallbacks.layout = firstArgumentExpression
+        ) migrateActionCallbacks.layout = this
     }
 }
