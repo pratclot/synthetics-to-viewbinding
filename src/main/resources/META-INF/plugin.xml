@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin url="https://github.com/pratclot/synthetics-to-viewbinding">
     <id>com.github.pratclot.syntheticstoviewbinding</id>
-    <name>synthetics-to-viewbinding</name>
+    <name>Synthetics To View Binding</name>
     <vendor>pratclot</vendor>
 
     <depends>com.intellij.modules.platform</depends>
